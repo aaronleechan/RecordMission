@@ -22,7 +22,6 @@ public partial class DashboardPage : ContentPage
 	private async void AddMission_Clicked(object sender, EventArgs e)
 	{
 		await Navigation.PushAsync(new MissionsPage());
-		//await Navigation.PushAsync(new TransactionsPage());
 	}
 
 
@@ -66,7 +65,6 @@ public partial class DashboardPage : ContentPage
 
 				TimeSpan duration = currentMission.Duration;
 				int totalSeconds = (int)duration.TotalSeconds;
-				// int totalSeconds = (int)TimeSpan.FromSeconds(6).TotalSeconds; --This is for testing
 				exerciseName.Text = currentMission.Name;
 
 				while (totalSeconds > 0)
@@ -303,6 +301,17 @@ public partial class DashboardPage : ContentPage
 					listView.ItemsSource = items;
 					break;
 			}
+		}
+	}
+
+	private void DurationEntry_Completed(object sender, EventArgs e)
+	{
+		if (sender is Entry entry && entry.BindingContext is Mission mission)
+		{
+			// Assuming mission.Duration is already updated due to TwoWay binding
+			App.MissionRepo.SaveItem(mission);
+			var items = App.MissionRepo.GetItems();
+			listView.ItemsSource = items;
 		}
 	}
 }

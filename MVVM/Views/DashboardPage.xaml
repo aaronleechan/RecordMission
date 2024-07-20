@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
              x:Class="MauiApp1.DashboardPage"
              Title="DashboardPage">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:TimeSpanToStringConverter x:Key="TimeSpanToStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions=".15*, .15*, .15*, .55*" BackgroundColor="White">
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
 
@@ -71,10 +80,16 @@
                         <Grid ColumnDefinitions=".7*,.1*,.2*" RowDefinitions="*,*">
                             <Label  StyleClass="StrongSmallTitle" Text="{Binding Name}" />
                             <Label  StyleClass="SmallFont"  Grid.Row="1" Text="{Binding Sets}"/>
-                            <Label x:Name="duration" StyleClass="StrongMediumTitle" Text="{Binding Duration}" 
-                                Grid.Column="0" Grid.ColumnSpan="3" 
-                                Grid.Row="0" Grid.RowSpan="2" 
-                                HorizontalOptions="Center" VerticalOptions="Center"
+                            <Entry x:Name="durationEntry"
+                                StyleClass="StrongMediumTitle"
+                                Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource TimeSpanToStringConverter}}"
+                                Grid.Column="0" Grid.ColumnSpan="3"
+                                Grid.Row="0" Grid.RowSpan="2"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                Keyboard="Numeric"
+                                IsEnabled="True"
+                                Completed="DurationEntry_Completed"
                             />
                             <Button x:Name="MissionButton" StyleClass="NormalButton" CommandParameter="{Binding .}" Grid.RowSpan="2" Grid.Column="2" Text="Start" Clicked="MissionAction"/>
                         </Grid>
