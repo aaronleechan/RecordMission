@@ -18,4 +18,15 @@ public class DashboardViewModel
         Missions = new ObservableCollection<Mission>(missions);
     }
 
+    // public async string PlayAllAction()
+    // {
+    //     foreach (var mission in Missions)
+    //     {
+    //         Console.WriteLine("Mission Name: " + mission.Name);
+    //         Console.WriteLine("Mission Duration: " + mission.Duration);
+    //         Console.WriteLine("___________________________________");
+    //         return "Mission Name: " + mission.Name + "Mission Duration: " + mission.Duration;
+    //     }
+    // }
+
 }

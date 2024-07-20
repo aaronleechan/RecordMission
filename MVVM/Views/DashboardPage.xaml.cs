@@ -11,6 +11,8 @@ public partial class DashboardPage : ContentPage
 
 	public Mission currentMission { get; set; }
 
+	private CancellationTokenSource _cancellationTokenSource;
+
 	public DashboardPage()
 	{
 		InitializeComponent();
@@ -21,6 +23,170 @@ public partial class DashboardPage : ContentPage
 	{
 		await Navigation.PushAsync(new MissionsPage());
 		//await Navigation.PushAsync(new TransactionsPage());
+	}
+
+
+
+	private async void onPlayAllAction(object sender, EventArgs e)
+	{
+		if (_cancellationTokenSource != null)
+		{
+			var cancelAction = await DisplayActionSheet("Do you want to Cancel All Missions?", "Cancel", null, "Yes", "No");
+			if (cancelAction == "Yes")
+			{
+				_cancellationTokenSource.Cancel();
+				_cancellationTokenSource = null;
+				DefaultText();
+				return;
+			}
+		}
+		else
+		{
+			_cancellationTokenSource = new CancellationTokenSource();
+			var cancellationToken = _cancellationTokenSource.Token;
+
+			var action = await DisplayActionSheet("Do you want to Play All Missions?", "Cancel", null, "Yes", "No");
+
+			if (action == "No")
+			{
+				_cancellationTokenSource = null;
+				return;
+			}
+
+			var missions = App.MissionRepo.GetItems();
+
+			foreach (var mission in missions)
+			{
+				if (cancellationToken.IsCancellationRequested)
+				{
+					break;
+				}
+
+				currentMission = mission;
+
+				TimeSpan duration = currentMission.Duration;
+				int totalSeconds = (int)duration.TotalSeconds;
+				// int totalSeconds = (int)TimeSpan.FromSeconds(6).TotalSeconds; --This is for testing
+				exerciseName.Text = currentMission.Name;
+
+				while (totalSeconds > 0)
+				{
+					if (cancellationToken.IsCancellationRequested)
+					{
+						break;
+					}
+
+					int minutes = totalSeconds / 60;
+					int seconds = totalSeconds % 60;
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						TimerLap.Text = $"{minutes}:{seconds:D2}";
+					});
+
+					try
+					{
+						await Task.Delay(1000, cancellationToken);
+					}
+					catch (TaskCanceledException)
+					{
+						break;
+					}
+					totalSeconds--;
+				}
+
+				if (cancellationToken.IsCancellationRequested)
+				{
+					break;
+				}
+
+				int restTotalSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds;
+				exerciseName.Text = "Resting...";
+
+				while (restTotalSeconds > 0)
+				{
+					if (cancellationToken.IsCancellationRequested)
+					{
+						break;
+					}
+
+					int restMinutes = restTotalSeconds / 60;
+					int restSeconds = restTotalSeconds % 60;
+					Device.BeginInvokeOnMainThread(() =>
+					{
+						TimerLap.Text = $"{restMinutes}:{restSeconds:D2}";
+					});
+
+					try
+					{
+						await Task.Delay(1000, cancellationToken);
+					}
+					catch (TaskCanceledException)
+					{
+						break;
+					}
+					restTotalSeconds--;
+				}
+
+				if (cancellationToken.IsCancellationRequested)
+				{
+					break;
+				}
+
+				try
+				{
+					await Task.Delay(5000, cancellationToken);
+				}
+				catch (TaskCanceledException)
+				{
+					break;
+				}
+			}
+
+			if (!cancellationToken.IsCancellationRequested)
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					exerciseName.Text = string.Empty;
+					TimerLap.Text = "00:00:00";
+				});
+			}
+			else
+			{
+				DefaultText();
+			}
+
+			_cancellationTokenSource = null;
+		}
+	}
+
+	private void DefaultText()
+	{
+		Device.BeginInvokeOnMainThread(() =>
+		{
+			exerciseName.Text = string.Empty;
+			TimerLap.Text = "00:00:00";
+		});
+	}
+
+	private async void onMissionReset(object sender, EventArgs e)
+	{
+		string action = await DisplayActionSheet("Do you want to Reset All Mission", "Cancel", null, "Yes","No");
+
+		switch(action)
+		{
+			case "Yes":
+				var items = App.MissionRepo.GetItems();
+				foreach(var item in items)
+				{
+					item.Sets = 0;
+					App.MissionRepo.SaveItem(item);
+				}
+				var allItems = App.MissionRepo.GetItems();
+				listView.ItemsSource = allItems;
+				break;
+			case "No":
+				break;
+		}
 	}
 
 	protected override void OnAppearing()

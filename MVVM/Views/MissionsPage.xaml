@@ -20,7 +20,7 @@
                     <Entry  Text="{Binding Mission.Name}" TextColor="Black"/>
                 </Frame>
 
-                <Button StyleClass="MarginT15" Text="Save" x:Name="Save" Clicked="Save_Clicked"/>
+                <Button StyleClass="MarginT15, BlueControl" Text="Save" x:Name="Save" Clicked="Save_Clicked"/>
                 <Button StyleClass="MarginT15, RedControl" Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked"/>
             </VerticalStackLayout>
         </Grid>

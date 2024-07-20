@@ -160,6 +160,13 @@
         <Setter Property="BackgroundColor" Value="DarkRed" />
     </Style>
 
+    <Style
+        ApplyToDerivedTypes="True"
+        Class="BlueControl"
+        TargetType="View">
+        <Setter Property="BackgroundColor" Value="Gray" />
+    </Style>
+
     <Style Class="TimerFont" TargetType="Label">
         <Setter Property="FontFamily" Value="Strong" />
         <Setter Property="FontSize" Value="30" />
