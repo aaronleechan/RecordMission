@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="RecordMission.app/Contents/MacOS/RecordMission">
+      <BCSymbolMapName>RecordMission.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>RecordMission.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile>/Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/mtouch-symbols.list</SymbolFile>
+      <DSymName>RecordMission.app.dSYM</DSymName>
+      <SourceProjectPath>/Users/aarlic/Documents/src/RecordMission</SourceProjectPath>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>

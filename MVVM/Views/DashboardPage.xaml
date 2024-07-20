@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.DashboardPage"
+             Title="DashboardPage">
+    <Grid RowDefinitions=".15*, .15*, .15*, .55*" BackgroundColor="White">
+        <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle" />
+
+        <VerticalStackLayout StyleClass="Header">
+            <Label StyleClass="HeaderTitle" Text="Good Morning" />
+            <Label StyleClass="HeaderSubtitle" Text="Aaron Chan" />
+        </VerticalStackLayout>
+
+        <Grid 
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            StyleClass="BalanceGrid"
+        >
+            <RoundRectangle StyleClass="BalanceRectangle" />
+
+            <Grid
+                ColumnDefinitions="*, *"
+                RowDefinitions=".333*, .333*, .333*"
+                StyleClass="Padding25"
+                
+            >
+                <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="Start" Grid.Column="0">
+                    <Label x:Name="exerciseName" StyleClass="StrongMediumTitle"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" >
+                    <Label x:Name="TimerLap" Text="00:00:00" StyleClass="TimerFont" HorizontalOptions="Center"/>
+                    
+                </VerticalStackLayout>
+
+            </Grid>
+        </Grid>
+
+        <Button Grid.Column="2" Grid.Row="2" StyleClass="CircularButton" Text="Play All" Clicked="PlayAction"/>
+        <Button Grid.Row="2" StyleClass="CircularButton" Text="+" Clicked="AddMission_Clicked"/>
+
+        <Grid
+            Grid.Row="3"
+            RowDefinitions=".1*, .9*"
+            StyleClass="Margin15"
+        >
+            <Label Text="Mission"/>
+            <CollectionView x:Name="listView" Grid.Row="1" EmptyView="No Data" ItemsSource="{Binding Missions}" SelectionMode="Single" SelectionChanged="onMissionSelected">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="15" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyViewTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label 
+                                StyleClass="NoDataText"
+                                Text="No Data Found"
+                            />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.EmptyViewTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions=".7*,.1*,.2*" RowDefinitions="*,*">
+                            <Label  StyleClass="StrongSmallTitle" Text="{Binding Name}" />
+                            <Label  StyleClass="SmallFont"  Grid.Row="1" Text="{Binding Duration}"/>
+                            <Label x:Name="set" StyleClass="StrongMediumTitle" Text="{Binding Sets}" 
+                                Grid.Column="0" Grid.ColumnSpan="3" 
+                                Grid.Row="0" Grid.RowSpan="2" 
+                                HorizontalOptions="Center" VerticalOptions="Center"
+                            />
+                            <Button x:Name="MissionButton" StyleClass="NormalButton" CommandParameter="{Binding .}" Grid.RowSpan="2" Grid.Column="2" Text="Start" Clicked="MissionAction"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
