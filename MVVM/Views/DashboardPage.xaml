@@ -81,7 +81,7 @@
                             <Label  StyleClass="StrongSmallTitle" Text="{Binding Name}" />
                             <Label  StyleClass="SmallFont"  Grid.Row="1" Text="{Binding Sets}"/>
                             <Entry x:Name="durationEntry"
-                                StyleClass="StrongMediumTitle"
+                                TextColor="Black"
                                 Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource TimeSpanToStringConverter}}"
                                 Grid.Column="0" Grid.ColumnSpan="3"
                                 Grid.Row="0" Grid.RowSpan="2"
