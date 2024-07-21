@@ -1051,6 +1051,9 @@ com.google.gson.annotations.Until;com.google.gson.annotations.Until
 Microsoft.Maui.Graphics.Platform.PlatformGraphicsView, Microsoft.Maui.Graphics;crc643f2b18b2570eaa5a.PlatformGraphicsView
 Microsoft.Maui.Graphics.Platform.PlatformGraphicsView;crc643f2b18b2570eaa5a.PlatformGraphicsView
 microsoft.maui.graphics.platform.PlatformGraphicsView;crc643f2b18b2570eaa5a.PlatformGraphicsView
+Plugin.Maui.Audio.StreamMediaDataSource, Plugin.Maui.Audio;crc64467b05f37239e7a6.StreamMediaDataSource
+Plugin.Maui.Audio.StreamMediaDataSource;crc64467b05f37239e7a6.StreamMediaDataSource
+plugin.maui.audio.StreamMediaDataSource;crc64467b05f37239e7a6.StreamMediaDataSource
 Syncfusion.Maui.Graphics.Internals.StaticTextLayout, Syncfusion.Maui.Core;crc640360c8a960a6805b.StaticTextLayout
 Syncfusion.Maui.Graphics.Internals.StaticTextLayout;crc640360c8a960a6805b.StaticTextLayout
 syncfusion.maui.graphics.internals.StaticTextLayout;crc640360c8a960a6805b.StaticTextLayout

@@ -20,6 +20,7 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Extensions.Primitives.dll",
 		"Microsoft.Maui.Graphics.dll",
 		"Newtonsoft.Json.dll",
+		"Plugin.Maui.Audio.dll",
 		"PropertyChanged.dll",
 		"Esp.Resources.dll",
 		"Esp.dll",

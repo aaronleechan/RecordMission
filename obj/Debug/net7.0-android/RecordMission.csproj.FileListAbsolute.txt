@@ -1008,3 +1008,5 @@
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-android/android/assets/Microsoft.Maui.Controls.HotReload.Forms.dll
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-android/android/assets/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-android/android/assets/Microsoft.VisualStudio.DesignTools.TapContract.dll
+/Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-android/android/assets/Plugin.Maui.Audio.dll
+/Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-android/android/src/crc64467b05f37239e7a6/StreamMediaDataSource.java

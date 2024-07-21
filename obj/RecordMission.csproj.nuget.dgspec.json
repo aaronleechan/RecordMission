@@ -74,6 +74,10 @@
               "version": "[7.0.101, )",
               "autoReferenced": true
             },
+            "Plugin.Maui.Audio": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[4.0.3, )"
@@ -207,6 +211,10 @@
               "version": "[7.0.101, )",
               "autoReferenced": true
             },
+            "Plugin.Maui.Audio": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "PropertyChanged.Fody": {
               "target": "Package",
               "version": "[4.0.3, )"
@@ -284,6 +292,10 @@
               "target": "Package",
               "version": "[7.0.101, )",
               "autoReferenced": true
+            },
+            "Plugin.Maui.Audio": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             },
             "PropertyChanged.Fody": {
               "target": "Package",

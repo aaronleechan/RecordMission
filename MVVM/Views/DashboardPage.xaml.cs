@@ -1,6 +1,7 @@
 using RecordMission;
 using System.Timers;
 using Microsoft.Maui.Dispatching;
+using Plugin.Maui.Audio;
 namespace MauiApp1;
 
 public partial class DashboardPage : ContentPage
@@ -24,13 +25,25 @@ public partial class DashboardPage : ContentPage
 		await Navigation.PushAsync(new MissionsPage());
 	}
 
+	public async void PlayAudio()
+    {
+        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("countDown.wav"));
 
+        audioPlayer.Play();
+    }
+
+    public async void StopAudio()
+    {
+        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("countDown.wav"));
+        audioPlayer.Stop();
+    }
+	
 
 	private async void onPlayAllAction(object sender, EventArgs e)
 	{
 		if (_cancellationTokenSource != null)
 		{
-			var cancelAction = await DisplayActionSheet("Do you want to Cancel All Missions?", "Cancel", null, "Yes", "No");
+			var cancelAction = await DisplayActionSheet("Do you want to Cancel the mission?", "Cancel", null, "Yes", "No");
 			if (cancelAction == "Yes")
 			{
 				_cancellationTokenSource.Cancel();
@@ -67,11 +80,21 @@ public partial class DashboardPage : ContentPage
 				int totalSeconds = (int)duration.TotalSeconds;
 				exerciseName.Text = currentMission.Name;
 
-				while (totalSeconds > 0)
+				while (totalSeconds >= 0)
 				{
 					if (cancellationToken.IsCancellationRequested)
 					{
 						break;
+					}
+
+					if(totalSeconds == 3)
+					{
+						PlayAudio();
+					}
+
+					if(totalSeconds == 0){
+						UpdateMissionData();
+						StopAudio();
 					}
 
 					int minutes = totalSeconds / 60;
@@ -87,25 +110,40 @@ public partial class DashboardPage : ContentPage
 					}
 					catch (TaskCanceledException)
 					{
+						StopAudio();
 						break;
 					}
 					totalSeconds--;
 				}
 
+				
+
 				if (cancellationToken.IsCancellationRequested)
 				{
+					StopAudio();
 					break;
 				}
 
-				int restTotalSeconds = (int)TimeSpan.FromSeconds(5).TotalSeconds;
+				int restTotalSeconds = (int)TimeSpan.FromSeconds(10).TotalSeconds;
 				exerciseName.Text = "Resting...";
 
-				while (restTotalSeconds > 0)
+				while (restTotalSeconds >= 0)
 				{
 					if (cancellationToken.IsCancellationRequested)
 					{
+						StopAudio();
 						break;
 					}
+
+					if(restTotalSeconds == 3)
+					{
+						PlayAudio();
+					}
+
+					if(restTotalSeconds == 0){
+						StopAudio();
+					}
+
 
 					int restMinutes = restTotalSeconds / 60;
 					int restSeconds = restTotalSeconds % 60;
@@ -125,25 +163,30 @@ public partial class DashboardPage : ContentPage
 					restTotalSeconds--;
 				}
 
+				
+
 				if (cancellationToken.IsCancellationRequested)
 				{
+					StopAudio();
 					break;
 				}
 
-				try
-				{
-					await Task.Delay(5000, cancellationToken);
-				}
-				catch (TaskCanceledException)
-				{
-					break;
-				}
+				// try
+				// {
+				// 	await Task.Delay(5000, cancellationToken);
+				// }
+				// catch (TaskCanceledException)
+				// {
+				// 	StopAudio();
+				// 	break;
+				// }
 			}
 
 			if (!cancellationToken.IsCancellationRequested)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
+					StopAudio();
 					exerciseName.Text = string.Empty;
 					TimerLap.Text = "00:00:00";
 				});
@@ -161,6 +204,7 @@ public partial class DashboardPage : ContentPage
 	{
 		Device.BeginInvokeOnMainThread(() =>
 		{
+			StopAudio();
 			exerciseName.Text = string.Empty;
 			TimerLap.Text = "00:00:00";
 		});
@@ -195,11 +239,6 @@ public partial class DashboardPage : ContentPage
 		listView.ItemsSource = vm.Missions;
 	}
 
-
-	private async void PlayAction(object sender, EventArgs e)
-	{
-		DisplayAlert("abc test", "This is Testing", "OK");
-	}
 
 	private async void MissionAction(object sender, EventArgs e)
 	{
@@ -247,6 +286,11 @@ public partial class DashboardPage : ContentPage
 		{
 			timeLeft = timeLeft.Subtract(TimeSpan.FromSeconds(1));
 
+			if(timeLeft == TimeSpan.FromSeconds(3))
+			{
+				PlayAudio();
+			}
+
 			// Update the UI on the main thread
 			MainThread.BeginInvokeOnMainThread(() =>
 			{
@@ -266,6 +310,7 @@ public partial class DashboardPage : ContentPage
 				}
 				//When completd update the mission data
 				UpdateMissionData();
+				StopAudio();
 				DisplayAlert("Mission Completed", "The mission duration has ended.", "OK");
 			});
 		}
