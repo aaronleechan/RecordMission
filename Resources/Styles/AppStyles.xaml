@@ -169,7 +169,7 @@
 
     <Style Class="TimerFont" TargetType="Label">
         <Setter Property="FontFamily" Value="Strong" />
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="50" />
         <Setter Property="TextColor" Value="{StaticResource Black}" />
     </Style>
 </ResourceDictionary>

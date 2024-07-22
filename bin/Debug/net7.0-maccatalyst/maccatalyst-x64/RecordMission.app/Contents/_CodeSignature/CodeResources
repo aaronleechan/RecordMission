@@ -12,6 +12,14 @@
 		<data>
 		yUdMzMShYHRka3bpYBi9sU74erM=
 		</data>
+		<key>Resources/Clock.mp3</key>
+		<data>
+		kNGOBCBEAU4M+SwDOtLU3T6Y6gw=
+		</data>
+		<key>Resources/Completed.mp3</key>
+		<data>
+		xOH2dVNsibSLaZNsBQEBoTQvRcg=
+		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
@@ -27,6 +35,10 @@
 		<key>Resources/appicon.icns</key>
 		<data>
 		L9cHAOVSlaW2jMaBgy7GlIBZdZg=
+		</data>
+		<key>Resources/countDown.wav</key>
+		<data>
+		/Iw0Ti5SwRguqi/8x+9CaJ7xupM=
 		</data>
 		<key>Resources/dotnet_bot.png</key>
 		<data>
@@ -211,6 +223,13 @@
 			ubTmM+pscoutX3y773+LhC9+EBgXMdvl7DzZlab2Aoc=
 			</data>
 		</dict>
+		<key>MonoBundle/Plugin.Maui.Audio.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			L9g4t/KpJeCui0ppA7q1WM+1BWc2BlOrRFXIEYot1J4=
+			</data>
+		</dict>
 		<key>MonoBundle/PropertyChanged.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -222,14 +241,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7MmAXu06BLEVn/2hpaFoxYfRFt+QYgok5MXol5CYsvI=
+			K7bKaYCcQinXE+4Jf/bMRDXDd5lVcajl5+oShkrRSQs=
 			</data>
 		</dict>
 		<key>MonoBundle/RecordMission.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PjCO/UlNdNUOySMKJebLdX3o54pX/A7fB/VZyYWvCOQ=
+			Bbe/mbLi/ghhD7ecyDKv8cCCJ5KK8bG6e8JwslBu1Io=
 			</data>
 		</dict>
 		<key>MonoBundle/Reloadify3000.Core.dll</key>
@@ -1485,6 +1504,20 @@
 			2FZf6X7d5XYh7EUBftn56OewgWdT7cQpkyA+74tdfic=
 			</data>
 		</dict>
+		<key>Resources/Clock.mp3</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sM9YEbqkJy9Pf7O94ohzByzyKy99DDVo/Yi3vSV/87g=
+			</data>
+		</dict>
+		<key>Resources/Completed.mp3</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HfoQXDsxJL1z+6SwBQkymxezq4ko9RLoDZ5bXiW6hJw=
+			</data>
+		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<dict>
 			<key>hash2</key>
@@ -1511,6 +1544,13 @@
 			<key>hash2</key>
 			<data>
 			H4w+DqGNITnXOEy4UxkSBph9BjGxHf/ui2zq6lzv5a0=
+			</data>
+		</dict>
+		<key>Resources/countDown.wav</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			v8rtKjx5zhK5BldG7fXm2PCKgexTAuoMJ7EJCML0mBk=
 			</data>
 		</dict>
 		<key>Resources/dotnet_bot.png</key>

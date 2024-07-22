@@ -13,7 +13,7 @@ public class AudioPlayerViewModel
 
     public async void PlayAudio()
     {
-        var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("countDown.wav"));
+        var audioPlayer = audioManager.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("Clock.mp3"));
 
         audioPlayer.Play();
     }

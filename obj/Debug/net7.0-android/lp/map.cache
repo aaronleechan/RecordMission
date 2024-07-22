@@ -5,6 +5,7 @@ Microsoft.Maui.Controls.Xaml.dll
 Microsoft.Maui.dll
 Microsoft.Maui.Essentials.dll
 Microsoft.Maui.Graphics.dll
+Plugin.Maui.Audio.dll
 SQLitePCLRaw.lib.e_sqlite3.android.dll
 Syncfusion.Maui.Charts.dll
 Syncfusion.Maui.Core.dll
@@ -158,4 +159,3 @@ maui.aar
 Microsoft.Maui.aar
 Microsoft.Maui.Essentials.aar
 Xamarin.Google.Crypto.Tink.Android.aar
-Plugin.Maui.Audio.dll

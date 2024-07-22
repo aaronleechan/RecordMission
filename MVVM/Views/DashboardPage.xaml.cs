@@ -25,16 +25,15 @@ public partial class DashboardPage : ContentPage
 		await Navigation.PushAsync(new MissionsPage());
 	}
 
-	public async void PlayAudio()
+	public async void PlayAudio(string filename)
     {
-        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("countDown.wav"));
-
+        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync(filename));
         audioPlayer.Play();
     }
 
-    public async void StopAudio()
+    public async void StopAudio(string filename)
     {
-        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync("countDown.wav"));
+        var audioPlayer = AudioManager.Current.CreatePlayer(await FileSystem.OpenAppPackageFileAsync(filename));
         audioPlayer.Stop();
     }
 	
@@ -66,9 +65,10 @@ public partial class DashboardPage : ContentPage
 			}
 
 			var missions = App.MissionRepo.GetItems();
-
+			var index = 0;
 			foreach (var mission in missions)
 			{
+				index += 1;
 				if (cancellationToken.IsCancellationRequested)
 				{
 					break;
@@ -87,18 +87,20 @@ public partial class DashboardPage : ContentPage
 						break;
 					}
 
+			
 					if(totalSeconds == 3)
 					{
-						PlayAudio();
+						PlayAudio("Clock.mp3");
 					}
 
 					if(totalSeconds == 0){
 						UpdateMissionData();
-						StopAudio();
+						StopAudio("Clock.mp3");
 					}
 
 					int minutes = totalSeconds / 60;
 					int seconds = totalSeconds % 60;
+
 					Device.BeginInvokeOnMainThread(() =>
 					{
 						TimerLap.Text = $"{minutes}:{seconds:D2}";
@@ -110,7 +112,7 @@ public partial class DashboardPage : ContentPage
 					}
 					catch (TaskCanceledException)
 					{
-						StopAudio();
+						StopAudio("Clock.mp3");
 						break;
 					}
 					totalSeconds--;
@@ -120,7 +122,15 @@ public partial class DashboardPage : ContentPage
 
 				if (cancellationToken.IsCancellationRequested)
 				{
-					StopAudio();
+					StopAudio("Clock.mp3");
+					break;
+				}
+
+				if(index == missions.Count)
+				{
+					exerciseName.Text = "Completed";
+					PlayAudio("Completed.mp3");
+					await Task.Delay(3000);
 					break;
 				}
 
@@ -131,22 +141,24 @@ public partial class DashboardPage : ContentPage
 				{
 					if (cancellationToken.IsCancellationRequested)
 					{
-						StopAudio();
+						StopAudio("Clock.mp3");
 						break;
 					}
 
 					if(restTotalSeconds == 3)
 					{
-						PlayAudio();
+						Console.WriteLine($"PLAY AUDIO : {exerciseName.Text}  -------------> {restTotalSeconds}");
+						PlayAudio("Clock.mp3");
 					}
 
 					if(restTotalSeconds == 0){
-						StopAudio();
+						StopAudio("Clock.mp3");
 					}
 
 
 					int restMinutes = restTotalSeconds / 60;
 					int restSeconds = restTotalSeconds % 60;
+
 					Device.BeginInvokeOnMainThread(() =>
 					{
 						TimerLap.Text = $"{restMinutes}:{restSeconds:D2}";
@@ -167,26 +179,16 @@ public partial class DashboardPage : ContentPage
 
 				if (cancellationToken.IsCancellationRequested)
 				{
-					StopAudio();
+					StopAudio("Clock.mp3");
 					break;
 				}
-
-				// try
-				// {
-				// 	await Task.Delay(5000, cancellationToken);
-				// }
-				// catch (TaskCanceledException)
-				// {
-				// 	StopAudio();
-				// 	break;
-				// }
 			}
 
 			if (!cancellationToken.IsCancellationRequested)
 			{
 				Device.BeginInvokeOnMainThread(() =>
 				{
-					StopAudio();
+					StopAudio("Clock.mp3");
 					exerciseName.Text = string.Empty;
 					TimerLap.Text = "00:00:00";
 				});
@@ -204,7 +206,7 @@ public partial class DashboardPage : ContentPage
 	{
 		Device.BeginInvokeOnMainThread(() =>
 		{
-			StopAudio();
+			StopAudio("Clock.mp3");
 			exerciseName.Text = string.Empty;
 			TimerLap.Text = "00:00:00";
 		});
@@ -288,7 +290,7 @@ public partial class DashboardPage : ContentPage
 
 			if(timeLeft == TimeSpan.FromSeconds(3))
 			{
-				PlayAudio();
+				PlayAudio("Clock.mp3");
 			}
 
 			// Update the UI on the main thread
@@ -310,7 +312,7 @@ public partial class DashboardPage : ContentPage
 				}
 				//When completd update the mission data
 				UpdateMissionData();
-				StopAudio();
+				StopAudio("Clock.mp3");
 				DisplayAlert("Mission Completed", "The mission duration has ended.", "OK");
 			});
 		}

@@ -35,7 +35,7 @@
                 
             >
                 <VerticalStackLayout HorizontalOptions="Start" VerticalOptions="Start" Grid.Column="0">
-                    <Label x:Name="exerciseName" StyleClass="StrongMediumTitle"/>
+                    <Label x:Name="exerciseName" StyleClass="StrongTitle"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" >
                     <Label x:Name="TimerLap" Text="00:00:00" StyleClass="TimerFont" HorizontalOptions="Center"/>

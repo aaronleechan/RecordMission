@@ -11,6 +11,7 @@
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Microsoft.Extensions.Primitives.dll
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Microsoft.Maui.Graphics.dll
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Newtonsoft.Json.dll
+/Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Plugin.Maui.Audio.dll
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Esp.Resources.dll
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Esp.dll
 /Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/publish/../RecordMission.app/Contents/MonoBundle/Reloadify3000.Core.dll

@@ -467,3 +467,5 @@
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/RecordMission.pdb
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/RecordMission.genruntimeconfig.cache
 /Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/ref/RecordMission.dll
+/Users/aarlic/Documents/src/RecordMission/bin/Debug/net7.0-maccatalyst/maccatalyst-x64/Plugin.Maui.Audio.dll
+/Users/aarlic/Documents/src/RecordMission/obj/Debug/net7.0-maccatalyst/maccatalyst-x64/resourcestamps/Plugin.Maui.Audio.stamp
